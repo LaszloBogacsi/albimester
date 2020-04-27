@@ -1,0 +1,3 @@
+rootProject.name = 'albimester'
+include 'am-services'
+include 'am-web'
