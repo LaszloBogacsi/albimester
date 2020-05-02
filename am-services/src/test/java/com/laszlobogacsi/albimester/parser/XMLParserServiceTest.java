@@ -21,14 +21,14 @@ public class XMLParserServiceTest {
     @Test
     void canParseABillFromFile() {
         String filename = "dummyBillFile.xml";
-        final DummyBill bill = parserService.parseFile(Paths.get("src/test/resources/" + filename), new DummyBillParserStrategy());
+        final DummyBill bill = parserService.parseFile(Paths.get("src/test/resources/" + filename), new DummyBillParser());
         assertThat(bill.name).isEqualTo("Dummy Name");
     }
 
     @Test
     void throwsExceptionIfFileDoesNotExist() {
         String filename = "fileDoesNotExist.xml";
-        assertThatThrownBy(() -> parserService.parseFile(Paths.get("src/test/resources/" + filename), new DummyBillParserStrategy()))
+        assertThatThrownBy(() -> parserService.parseFile(Paths.get("src/test/resources/" + filename), new DummyBillParser()))
                 .isInstanceOf(RuntimeException.class);
     }
 
@@ -41,7 +41,7 @@ public class XMLParserServiceTest {
         }
     }
 
-    private static class DummyBillParserStrategy implements BillParser<DummyBill> {
+    private static class DummyBillParser implements BillParser<DummyBill> {
         @Override
         public DummyBill parseBill(Element root) {
             root.getElementsByTagName("name").item(0).getTextContent();

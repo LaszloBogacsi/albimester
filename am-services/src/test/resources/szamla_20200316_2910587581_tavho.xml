@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-2"?><szamlak>
+   <export_datuma>2020-03-17</export_datuma>
+   <export_szla_db>1</export_szla_db>
+   <kezdo_ido/>
+   <zaro_ido/>
+   <kezdo_szla_szam/>
+   <zaro_szla_szam/>
+   <szamla>
+      <fejlec>
+         <szlasorszam>2910587581</szlasorszam>
+         <szlatipus>
+			1
+		</szlatipus>
+         <szladatum>2020-03-16</szladatum>
+         <teljdatum>2020-04-15</teljdatum>
+      </fejlec>
+      <szamlakibocsato>
+         <adoszam>10941362-2-44</adoszam>
+         <nev>BUDAPESTI TÁVHŐSZOLGÁLTATÓ ZRT.</nev>
+         <cim>
+            <iranyitoszam>1116</iranyitoszam>
+            <telepules>Budapest</telepules>
+            <kerulet>XI</kerulet>
+            <kozterulet_neve>Kalotaszeg</kozterulet_neve>
+            <kozterulet_jellege>utca</kozterulet_jellege>
+            <hazszam>31</hazszam>
+         </cim>
+         <bankszamlaszam>11794008-20521556</bankszamlaszam>
+      </szamlakibocsato>
+      <vevo>
+         <ugyfelazon>30328440</ugyfelazon>
+         <nev>BOGÁCSI LÁSZLÓ
+						 
+						</nev>
+         <cim>
+            <iranyitoszam>1119</iranyitoszam>
+            <telepules>Budapest</telepules>
+            <kozterulet_neve>Etele</kozterulet_neve>
+            <kozterulet_jellege>út</kozterulet_jellege>
+            <hazszam>37</hazszam>
+            <szint>8</szint>
+            <ajto>27</ajto>
+         </cim>
+         <adoszam/>
+      </vevo>
+      <termek_szolgaltatas_tetelek>
+         <termeknev>Távhő-szolgáltatási alapdíj A </termeknev>
+         <menny>162</menny>
+         <mertekegys>légm3</mertekegys>
+         <nettoar>5237</nettoar>
+         <nettoegysar>32.33</nettoegysar>
+         <adokulcs>5</adokulcs>
+         <bruttoar>5499</bruttoar>
+         <idoszak>2020.04.01-2020.04.30</idoszak>
+         <szorzo>1hó</szorzo>
+      </termek_szolgaltatas_tetelek>
+      <termek_szolgaltatas_tetelek>
+         <termeknev>Árengedmény </termeknev>
+         <menny>5237</menny>
+         <mertekegys>Ft</mertekegys>
+         <nettoar>-524</nettoar>
+         <nettoegysar/>
+         <adokulcs>5</adokulcs>
+         <bruttoar>-550</bruttoar>
+         <idoszak>2020.04.01-2020.04.30</idoszak>
+         <szorzo>10.00%</szorzo>
+      </termek_szolgaltatas_tetelek>
+      <termek_szolgaltatas_tetelek>
+         <termeknev>Épületrész fűtési célú hődíja </termeknev>
+         <menny>1.6167</menny>
+         <mertekegys>GJ</mertekegys>
+         <nettoar>3996</nettoar>
+         <nettoegysar>2472.00</nettoegysar>
+         <adokulcs>5</adokulcs>
+         <bruttoar>4196</bruttoar>
+         <idoszak>2020.02.01-2020.02.29</idoszak>
+         <szorzo>0.3113%</szorzo>
+      </termek_szolgaltatas_tetelek>
+      <termek_szolgaltatas_tetelek>
+         <termeknev>Épületrész melegvíz készítési célú hődíja </termeknev>
+         <menny>0.9126</menny>
+         <mertekegys>GJ</mertekegys>
+         <nettoar>2256</nettoar>
+         <nettoegysar>2472.00</nettoegysar>
+         <adokulcs>5</adokulcs>
+         <bruttoar>2369</bruttoar>
+         <idoszak>2020.02.01-2020.02.29</idoszak>
+         <szorzo>0.6787%</szorzo>
+      </termek_szolgaltatas_tetelek>
+      <osszesites>
+         <afarovat id="1">
+            <adokulcs>5</adokulcs>
+            <nettoar>10965</nettoar>
+            <adoertek>548</adoertek>
+            <bruttoar>11513</bruttoar>
+         </afarovat>
+         <kerekites>-1</kerekites>
+         <vegosszeg>
+            <nettoarossz>10965</nettoarossz>
+            <afaertekossz>548</afaertekossz>
+            <bruttoarossz>11513</bruttoarossz>
+         </vegosszeg>
+         <fizetendo>11513</fizetendo>
+      </osszesites>
+      <zaradekok>
+         <rezsicsokkentes>
+            <megnevezes>A rezsidíj csökkentése nélkül Önt ebben az elszámolási időszakban a következő fizetési kötelezettség terhelte volna:</megnevezes>
+            <ertek>14892</ertek>
+         </rezsicsokkentes>
+         <rezsicsokkentes>
+            <nev>- ebben az elszámolási időszakban:</nev>
+            <ertek>3379</ertek>
+         </rezsicsokkentes>
+         <rezsicsokkentes>
+            <nev>- 2013. január 1-je óta összesen:</nev>
+            <ertek>297226</ertek>
+         </rezsicsokkentes>
+      </zaradekok>
+      <nem_kotelezo>
+         <fiz_hatarido>2020-04-15</fiz_hatarido>
+         <fiz_mod>Átutalás</fiz_mod>
+      </nem_kotelezo>
+   </szamla>
+</szamlak>
