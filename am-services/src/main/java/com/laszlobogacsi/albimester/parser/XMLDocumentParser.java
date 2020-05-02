@@ -9,17 +9,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Optional;
-
-import static java.util.Optional.of;
 
 public class XMLDocumentParser implements DocumentParser {
     @Override
-    public Optional<Element> parse(InputStream inputStream) {
+    public Element parse(InputStream inputStream) {
         try {
             DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             final Document document = dBuilder.parse(inputStream);
-            return of(document.getDocumentElement());
+            return document.getDocumentElement();
         } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new XMLDocumentParseException("Failed to parse document: " + e.getMessage(), e);
         }

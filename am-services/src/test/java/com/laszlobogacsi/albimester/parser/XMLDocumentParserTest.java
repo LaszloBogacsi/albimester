@@ -23,16 +23,16 @@ public class XMLDocumentParserTest {
     void parseASimpleNode() {
         final String xmlString = "<?xml version=\"1.0\"?><aNode>test text</aNode>";
         final InputStream inputStream = new ByteArrayInputStream(xmlString.getBytes());
-        final Optional<Element> element = parser.parse(inputStream);
-        assertThat(element.get().getTextContent()).isEqualTo("test text");
+        final Element element = parser.parse(inputStream);
+        assertThat(element.getTextContent()).isEqualTo("test text");
     }
 
     @Test
     void parseAnEmptyNode() {
         final String xmlString = "<?xml version=\"1.0\"?><aNode></aNode>";
         final InputStream inputStream = new ByteArrayInputStream(xmlString.getBytes());
-        final Optional<Element> element = parser.parse(inputStream);
-        assertThat(element.get().getTextContent()).isEqualTo("");
+        final Element element = parser.parse(inputStream);
+        assertThat(element.getTextContent()).isEqualTo("");
     }
 
     @Test
