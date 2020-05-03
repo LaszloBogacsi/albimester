@@ -5,6 +5,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 public class ElmuBillParser implements BillParser<ElmuBill> {
     @Override
     public ElmuBill parseBill(Element root) {
@@ -57,11 +61,77 @@ public class ElmuBillParser implements BillParser<ElmuBill> {
                             .currency(element.getElementsByTagName("penznem").item(0).getTextContent())
                             .originBankAccount(element.getElementsByTagName("kibocsato_bankszamlaszama").item(0).getTextContent())
                             .invoicedService(element.getElementsByTagName("szamlazott_szolgaltatas").item(0).getTextContent())
-                    .build());
+                            .build());
                 }
             }
-
         }
-        return ElmuBill.builder().header(headerBuilder.build()).build();
+
+        final NodeList tetelek = root.getElementsByTagName("tetelek").item(0).getChildNodes();
+        List<ElmuBillItem> items = new ArrayList<>();
+        for (int j = 0; j < tetelek.getLength(); j++) {
+            Node nodeTetel = tetelek.item(j);
+            if (nodeTetel.getNodeType() == Node.ELEMENT_NODE) {
+                if ("tetel".equalsIgnoreCase(nodeTetel.getNodeName())) {
+                    Element tetelElement = (Element) nodeTetel;
+                    items.add(ElmuBillItem.builder()
+                            .id(tetelElement.getAttribute("id"))
+                            .productName(Optional.ofNullable(tetelElement.getElementsByTagName("termeknev").item(0)).map(Node::getTextContent).orElse(null))
+                            .unit(Optional.ofNullable(tetelElement.getElementsByTagName("mennyegys").item(0)).map(Node::getTextContent).orElse(null))
+                            .amount(Optional.ofNullable(tetelElement.getElementsByTagName("menny").item(0)).map(Node::getTextContent).orElse(null))
+                            .netUnitPrice(Optional.ofNullable(tetelElement.getElementsByTagName("nettoegysegar").item(0)).map(Node::getTextContent).orElse(null))
+                            .netPrice(Optional.ofNullable(tetelElement.getElementsByTagName("nettoar").item(0)).map(Node::getTextContent).orElse(null))
+                            .vatPercentage(Optional.ofNullable(tetelElement.getElementsByTagName("afakulcs").item(0)).map(Node::getTextContent).orElse(null))
+                            .grossPrice(Optional.ofNullable(tetelElement.getElementsByTagName("bruttoar").item(0)).map(Node::getTextContent).orElse(null))
+                            .timeRange(Optional.ofNullable(tetelElement.getElementsByTagName("idoszak").item(0)).map(n -> TimeRange.builder()
+                                    .from(Optional.ofNullable(((Element) n).getElementsByTagName("tol").item(0)).map(Node::getTextContent).orElse(null))
+                                    .build()).orElse(null))
+                            .build());
+                }
+            }
+        }
+
+        final NodeList summs = root.getElementsByTagName("osszesites").item(0).getChildNodes();
+        List<VatSection> vatSections = new ArrayList<>();
+        final ElmuBillSummary.ElmuBillSummaryBuilder elmuBillSummaryBuilder = ElmuBillSummary.builder();
+        for (int j = 0; j < summs.getLength(); j++) {
+            Node nodeSum = summs.item(j);
+            if (nodeSum.getNodeType() == Node.ELEMENT_NODE) {
+                if ("afarovat".equalsIgnoreCase(nodeSum.getNodeName())) {
+                    Element afarovatElement = (Element) nodeSum;
+                    vatSections.add(VatSection.builder()
+                            .id(afarovatElement.getAttribute("id"))
+                            .vatPercentage(Optional.ofNullable(afarovatElement.getElementsByTagName("afakulcs").item(0)).map(Node::getTextContent).orElse(null))
+                            .netPrice(Optional.ofNullable(afarovatElement.getElementsByTagName("nettoar").item(0)).map(Node::getTextContent).orElse(null))
+                            .vatValue(Optional.ofNullable(afarovatElement.getElementsByTagName("afaertek").item(0)).map(Node::getTextContent).orElse(null))
+                            .grossPrice(Optional.ofNullable(afarovatElement.getElementsByTagName("bruttoar").item(0)).map(Node::getTextContent).orElse(null))
+                            .timeRange(Optional.ofNullable(afarovatElement.getElementsByTagName("idoszak").item(0)).map(n -> TimeRange.builder()
+                                    .from(Optional.ofNullable(((Element) n).getElementsByTagName("tol").item(0)).map(Node::getTextContent).orElse(null))
+                                    .build()).orElse(null))
+                            .build());
+                }
+
+                if ("fizetendo".equalsIgnoreCase(nodeSum.getNodeName())) {
+                    Element fizetendoElement = (Element) nodeSum;
+                    elmuBillSummaryBuilder.toPay(ToPay.builder()
+                            .payTotal(Optional.ofNullable(fizetendoElement.getElementsByTagName("fizetendoossz").item(0)).map(Node::getTextContent).orElse(null))
+                            .build());
+                }
+
+                if ("vegosszeg".equalsIgnoreCase(nodeSum.getNodeName())) {
+                    Element sumTotal = (Element) nodeSum;
+                    elmuBillSummaryBuilder.sumTotal(SumTotal.builder()
+                            .netPriceTotal(Optional.ofNullable(sumTotal.getElementsByTagName("nettoarossz").item(0)).map(Node::getTextContent).orElse(null))
+                            .vatValueTotal(Optional.ofNullable(sumTotal.getElementsByTagName("afaertekossz").item(0)).map(Node::getTextContent).orElse(null))
+                            .grossPriceTotal(Optional.ofNullable(sumTotal.getElementsByTagName("bruttoarossz").item(0)).map(Node::getTextContent).orElse(null))
+                            .build());
+                }
+            }
+        }
+
+        return ElmuBill.builder()
+                .header(headerBuilder.build())
+                .items(ElmuBillItems.builder().items(items).build())
+                .summary(elmuBillSummaryBuilder.vatSections(vatSections).build())
+                .build();
     }
 }

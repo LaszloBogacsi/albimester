@@ -3,6 +3,7 @@ package com.laszlobogacsi.albimester.parser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -29,7 +30,7 @@ public class XMLDocumentParserTest {
 
     @Test
     void parseAnEmptyNode() {
-        final String xmlString = "<?xml version=\"1.0\"?><aNode></aNode>";
+        final String xmlString = "<?xml version=\"1.0\"?><aNode><childnode></childnode></aNode>";
         final InputStream inputStream = new ByteArrayInputStream(xmlString.getBytes());
         final Element element = parser.parse(inputStream);
         assertThat(element.getTextContent()).isEqualTo("");

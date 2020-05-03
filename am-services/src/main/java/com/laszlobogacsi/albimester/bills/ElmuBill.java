@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class ElmuBill implements Bill {
     private ElmuBillHeader header;
-//    private ElmuBillItems items;
+    private ElmuBillItems items;
 //    private ElmuBillDetails details;
-//    private ElmuBillSummary summary;
+    private ElmuBillSummary summary;
 }
