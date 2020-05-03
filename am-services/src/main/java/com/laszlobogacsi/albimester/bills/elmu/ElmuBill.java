@@ -1,4 +1,4 @@
-package com.laszlobogacsi.albimester.bills;
+package com.laszlobogacsi.albimester.bills.elmu;
 
 import com.laszlobogacsi.albimester.parser.Bill;
 import lombok.Builder;

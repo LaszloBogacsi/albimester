@@ -1,6 +1,6 @@
 package com.laszlobogacsi.albimester.parser;
 
-import com.laszlobogacsi.albimester.bills.*;
+import com.laszlobogacsi.albimester.bills.elmu.*;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -21,15 +21,10 @@ public class ElmuBillParser implements BillParser<ElmuBill> {
                 if ("elado".equalsIgnoreCase(node.getNodeName())) {
                     Element element = (Element) node;
                     final SellerInfo.SellerInfoBuilder sellerInfoBuilder = SellerInfo.builder()
-                            .name(element.getElementsByTagName("nev").item(0).getTextContent())
-                            .taxReference(element.getElementsByTagName("adoszam").item(0).getTextContent());
+                            .name(Optional.ofNullable(element.getElementsByTagName("nev").item(0)).map(Node::getTextContent).orElse(null))
+                            .taxReference(Optional.ofNullable(element.getElementsByTagName("adoszam").item(0)).map(Node::getTextContent).orElse(null));
                     final Element cim = (Element) element.getElementsByTagName("cim").item(0);
-                    final Address address = Address.builder()
-                            .country(cim.getElementsByTagName("orszag").item(0).getTextContent())
-                            .city(cim.getElementsByTagName("telepules").item(0).getTextContent())
-                            .postCode(cim.getElementsByTagName("irszam").item(0).getTextContent())
-                            .street(cim.getElementsByTagName("kozternev").item(0).getTextContent())
-                            .build();
+                    final Address address = cim != null ? buildAddress(cim) : null;
                     headerBuilder.sellerInfo(sellerInfoBuilder.address(address).build());
 
                 }
@@ -37,15 +32,9 @@ public class ElmuBillParser implements BillParser<ElmuBill> {
                 if ("vevo".equalsIgnoreCase(node.getNodeName())) {
                     Element element = (Element) node;
                     final BuyerInfo.BuyerInfoBuilder buyerInfoBuilder = BuyerInfo.builder()
-                            .name(element.getElementsByTagName("nev").item(0).getTextContent());
+                            .name(Optional.ofNullable(element.getElementsByTagName("nev").item(0)).map(Node::getTextContent).orElse(null));
                     final Element cim = (Element) element.getElementsByTagName("cim").item(0);
-                    final Address address = Address.builder()
-                            .country(cim.getElementsByTagName("orszag").item(0).getTextContent())
-                            .city(cim.getElementsByTagName("telepules").item(0).getTextContent())
-                            .postCode(cim.getElementsByTagName("irszam").item(0).getTextContent())
-                            .street(cim.getElementsByTagName("kozternev").item(0).getTextContent())
-                            .houseNumber(cim.getElementsByTagName("hazszam").item(0).getTextContent())
-                            .build();
+                    final Address address = cim != null ? buildAddress(cim) : null;
                     headerBuilder.buyerInfo(buyerInfoBuilder.address(address).build());
                 }
 
@@ -90,11 +79,11 @@ public class ElmuBillParser implements BillParser<ElmuBill> {
             }
         }
 
-        final NodeList summs = root.getElementsByTagName("osszesites").item(0).getChildNodes();
+        final NodeList sums = root.getElementsByTagName("osszesites").item(0).getChildNodes();
         List<VatSection> vatSections = new ArrayList<>();
         final ElmuBillSummary.ElmuBillSummaryBuilder elmuBillSummaryBuilder = ElmuBillSummary.builder();
-        for (int j = 0; j < summs.getLength(); j++) {
-            Node nodeSum = summs.item(j);
+        for (int j = 0; j < sums.getLength(); j++) {
+            Node nodeSum = sums.item(j);
             if (nodeSum.getNodeType() == Node.ELEMENT_NODE) {
                 if ("afarovat".equalsIgnoreCase(nodeSum.getNodeName())) {
                     Element afarovatElement = (Element) nodeSum;
@@ -132,6 +121,16 @@ public class ElmuBillParser implements BillParser<ElmuBill> {
                 .header(headerBuilder.build())
                 .items(ElmuBillItems.builder().items(items).build())
                 .summary(elmuBillSummaryBuilder.vatSections(vatSections).build())
+                .build();
+    }
+
+    private Address buildAddress(Element cim) {
+        return Address.builder()
+                .country(Optional.ofNullable(cim.getElementsByTagName("orszag").item(0)).map(Node::getTextContent).orElse(null))
+                .city(Optional.ofNullable(cim.getElementsByTagName("telepules").item(0)).map(Node::getTextContent).orElse(null))
+                .postCode(Optional.ofNullable(cim.getElementsByTagName("irszam").item(0)).map(Node::getTextContent).orElse(null))
+                .street(Optional.ofNullable(cim.getElementsByTagName("kozternev").item(0)).map(Node::getTextContent).orElse(null))
+                .houseNumber(Optional.ofNullable(cim.getElementsByTagName("hazszam").item(0)).map(Node::getTextContent).orElse(null))
                 .build();
     }
 }

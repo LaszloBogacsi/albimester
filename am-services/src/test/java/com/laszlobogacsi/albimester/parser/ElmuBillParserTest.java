@@ -1,6 +1,6 @@
 package com.laszlobogacsi.albimester.parser;
 
-import com.laszlobogacsi.albimester.bills.*;
+import com.laszlobogacsi.albimester.bills.elmu.*;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Element;
 

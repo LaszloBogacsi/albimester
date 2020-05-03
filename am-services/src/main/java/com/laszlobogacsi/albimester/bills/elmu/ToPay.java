@@ -1,4 +1,4 @@
-package com.laszlobogacsi.albimester.bills;
+package com.laszlobogacsi.albimester.bills.elmu;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
