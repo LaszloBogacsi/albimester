@@ -1,9 +1,6 @@
 package com.laszlobogacsi.albimester.parser;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class XMLParserService {
     private final DocumentParser parser;
@@ -12,12 +9,7 @@ public class XMLParserService {
         this.parser = parser;
     }
 
-    public <T extends Bill> T parseFile(Path path, BillParser<T> billParser) {
-        try (InputStream inputStream = Files.newInputStream(path)){
-            return billParser.parseBill(parser.parse(inputStream));
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Could not open file: " + path.getFileName(), e);
-        }
+    public <T extends Bill> T parseFile(InputStream inputStream, BillParser<T> billParser) {
+        return billParser.parseBill(parser.parse(inputStream));
     }
 }

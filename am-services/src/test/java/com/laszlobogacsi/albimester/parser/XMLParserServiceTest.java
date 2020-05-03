@@ -4,10 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Element;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class XMLParserServiceTest {
     private XMLParserService parserService;
@@ -19,17 +21,12 @@ public class XMLParserServiceTest {
     }
 
     @Test
-    void canParseABillFromFile() {
+    void canParseABillFromFile() throws IOException {
         String filename = "dummyBillFile.xml";
-        final DummyBill bill = parserService.parseFile(Paths.get("src/test/resources/" + filename), new DummyBillParser());
-        assertThat(bill.name).isEqualTo("Dummy Name");
-    }
 
-    @Test
-    void throwsExceptionIfFileDoesNotExist() {
-        String filename = "fileDoesNotExist.xml";
-        assertThatThrownBy(() -> parserService.parseFile(Paths.get("src/test/resources/" + filename), new DummyBillParser()))
-                .isInstanceOf(RuntimeException.class);
+        final InputStream input = Files.newInputStream(Paths.get("src/test/resources/" + filename));
+        final DummyBill bill = parserService.parseFile(input, new DummyBillParser());
+        assertThat(bill.name).isEqualTo("Dummy Name");
     }
 
     private static class DummyBill implements Bill {
