@@ -25,7 +25,7 @@ public class XMLParserServiceTest {
         String filename = "dummyBillFile.xml";
 
         final InputStream input = Files.newInputStream(Paths.get("src/test/resources/" + filename));
-        final DummyBill bill = parserService.parseFile(input, new DummyBillParser());
+        final DummyBill bill = parserService.parseInput(input, new DummyBillParser());
         assertThat(bill.name).isEqualTo("Dummy Name");
     }
 

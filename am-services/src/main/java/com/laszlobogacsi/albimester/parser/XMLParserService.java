@@ -9,7 +9,7 @@ public class XMLParserService {
         this.parser = parser;
     }
 
-    public <T extends Bill> T parseFile(InputStream inputStream, BillParser<T> billParser) {
+    public <T extends Bill> T parseInput(InputStream inputStream, BillParser<T> billParser) {
         return billParser.parseBill(parser.parse(inputStream));
     }
 }

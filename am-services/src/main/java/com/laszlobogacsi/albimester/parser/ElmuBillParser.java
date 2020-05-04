@@ -10,108 +10,149 @@ import java.util.List;
 import java.util.Optional;
 
 public class ElmuBillParser implements BillParser<ElmuBill> {
+
+    public static final String FEJLEC = "fejlec";
+    public static final String ELADO = "elado";
+    public static final String NEV = "nev";
+    public static final String ADOSZAM = "adoszam";
+    public static final String CIM = "cim";
+    public static final String VEVO = "vevo";
+    public static final String SZAMLAINFO = "szamlainfo";
+    public static final String SORSZAM = "sorszam";
+    public static final String KIALLDATUM = "kialldatum";
+    public static final String TELJDATUM = "teljdatum";
+    public static final String FIZHATARIDO = "fizhatarido";
+    public static final String FIZMOD = "fizmod";
+    public static final String SZAMLATIPUS = "szamlatipus";
+    public static final String PENZNEM = "penznem";
+    public static final String KIBOCSATO_BANKSZAMLASZAMA = "kibocsato_bankszamlaszama";
+    public static final String SZAMLAZOTT_SZOLGALTATAS = "szamlazott_szolgaltatas";
+    public static final String TETELEK = "tetelek";
+    public static final String TETEL = "tetel";
+    public static final String ID = "id";
+    public static final String TERMEKNEV = "termeknev";
+    public static final String MENNYEGYS = "mennyegys";
+    public static final String MENNY = "menny";
+    public static final String NETTOEGYSEGAR = "nettoegysegar";
+    public static final String NETTOAR = "nettoar";
+    public static final String AFAKULCS = "afakulcs";
+    public static final String BRUTTOAR = "bruttoar";
+    public static final String IDOSZAK = "idoszak";
+    public static final String TOL = "tol";
+    public static final String OSSZESITES = "osszesites";
+    public static final String AFAROVAT = "afarovat";
+    public static final String AFAERTEK = "afaertek";
+    public static final String FIZETENDO = "fizetendo";
+    public static final String FIZETENDOOSSZ = "fizetendoossz";
+    public static final String VEGOSSZEG = "vegosszeg";
+    public static final String NETTOAROSSZ = "nettoarossz";
+    public static final String AFAERTEKOSSZ = "afaertekossz";
+    public static final String BRUTTOAROSSZ = "bruttoarossz";
+    public static final String ORSZAG = "orszag";
+    public static final String TELEPULES = "telepules";
+    public static final String IRSZAM = "irszam";
+    public static final String KOZTERNEV = "kozternev";
+    public static final String HAZSZAM = "hazszam";
+
     @Override
     public ElmuBill parseBill(Element root) {
-        final NodeList fejlec = root.getElementsByTagName("fejlec").item(0).getChildNodes();
+        final NodeList fejlec = root.getElementsByTagName(FEJLEC).item(0).getChildNodes();
         final ElmuBillHeader.ElmuBillHeaderBuilder headerBuilder = ElmuBillHeader.builder();
 
         for (int i = 0; i < fejlec.getLength(); i++) {
             Node node = fejlec.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                if ("elado".equalsIgnoreCase(node.getNodeName())) {
+                if (ELADO.equalsIgnoreCase(node.getNodeName())) {
                     Element element = (Element) node;
-                    final SellerInfo.SellerInfoBuilder sellerInfoBuilder = SellerInfo.builder()
-                            .name(Optional.ofNullable(element.getElementsByTagName("nev").item(0)).map(Node::getTextContent).orElse(null))
-                            .taxReference(Optional.ofNullable(element.getElementsByTagName("adoszam").item(0)).map(Node::getTextContent).orElse(null));
-                    final Element cim = (Element) element.getElementsByTagName("cim").item(0);
+                    final SellerInfo.SellerInfoBuilder sellerInfoBuilder = SellerInfo.builder().
+                            name(getTextContent(element, NEV))
+                            .taxReference(getTextContent(element, ADOSZAM));
+                    final Element cim = (Element) element.getElementsByTagName(CIM).item(0);
                     final Address address = cim != null ? buildAddress(cim) : null;
-                    headerBuilder.sellerInfo(sellerInfoBuilder.address(address).build());
 
+                    headerBuilder.sellerInfo(sellerInfoBuilder.address(address).build());
                 }
 
-                if ("vevo".equalsIgnoreCase(node.getNodeName())) {
+                if (VEVO.equalsIgnoreCase(node.getNodeName())) {
                     Element element = (Element) node;
-                    final BuyerInfo.BuyerInfoBuilder buyerInfoBuilder = BuyerInfo.builder()
-                            .name(Optional.ofNullable(element.getElementsByTagName("nev").item(0)).map(Node::getTextContent).orElse(null));
-                    final Element cim = (Element) element.getElementsByTagName("cim").item(0);
+                    final BuyerInfo.BuyerInfoBuilder buyerInfoBuilder = BuyerInfo.builder().name(getTextContent(element, NEV));
+                    final Element cim = (Element) element.getElementsByTagName(CIM).item(0);
                     final Address address = cim != null ? buildAddress(cim) : null;
                     headerBuilder.buyerInfo(buyerInfoBuilder.address(address).build());
                 }
 
-                if ("szamlainfo".equalsIgnoreCase(node.getNodeName())) {
+                if (SZAMLAINFO.equalsIgnoreCase(node.getNodeName())) {
                     Element element = (Element) node;
                     headerBuilder.invoiceInfo(InvoiceInfo.builder()
-                            .serialNumber(element.getElementsByTagName("sorszam").item(0).getTextContent())
-                            .createdDate(element.getElementsByTagName("kialldatum").item(0).getTextContent())
-                            .payedDate(element.getElementsByTagName("teljdatum").item(0).getTextContent())
-                            .payByDate(element.getElementsByTagName("fizhatarido").item(0).getTextContent())
-                            .payMethod(element.getElementsByTagName("fizmod").item(0).getTextContent())
-                            .invoiceType(element.getElementsByTagName("szamlatipus").item(0).getTextContent())
-                            .currency(element.getElementsByTagName("penznem").item(0).getTextContent())
-                            .originBankAccount(element.getElementsByTagName("kibocsato_bankszamlaszama").item(0).getTextContent())
-                            .invoicedService(element.getElementsByTagName("szamlazott_szolgaltatas").item(0).getTextContent())
+                            .serialNumber(getTextContent(element, SORSZAM))
+                            .createdDate(getTextContent(element, KIALLDATUM))
+                            .payedDate(getTextContent(element, TELJDATUM))
+                            .payByDate(getTextContent(element, FIZHATARIDO))
+                            .payMethod(getTextContent(element, FIZMOD))
+                            .invoiceType(getTextContent(element, SZAMLATIPUS))
+                            .currency(getTextContent(element, PENZNEM))
+                            .originBankAccount(getTextContent(element, KIBOCSATO_BANKSZAMLASZAMA))
+                            .invoicedService(getTextContent(element, SZAMLAZOTT_SZOLGALTATAS))
                             .build());
                 }
             }
         }
 
-        final NodeList tetelek = root.getElementsByTagName("tetelek").item(0).getChildNodes();
+        final NodeList tetelek = root.getElementsByTagName(TETELEK).item(0).getChildNodes();
         List<ElmuBillItem> items = new ArrayList<>();
         for (int j = 0; j < tetelek.getLength(); j++) {
             Node nodeTetel = tetelek.item(j);
             if (nodeTetel.getNodeType() == Node.ELEMENT_NODE) {
-                if ("tetel".equalsIgnoreCase(nodeTetel.getNodeName())) {
+                if (TETEL.equalsIgnoreCase(nodeTetel.getNodeName())) {
                     Element tetelElement = (Element) nodeTetel;
                     items.add(ElmuBillItem.builder()
-                            .id(tetelElement.getAttribute("id"))
-                            .productName(Optional.ofNullable(tetelElement.getElementsByTagName("termeknev").item(0)).map(Node::getTextContent).orElse(null))
-                            .unit(Optional.ofNullable(tetelElement.getElementsByTagName("mennyegys").item(0)).map(Node::getTextContent).orElse(null))
-                            .amount(Optional.ofNullable(tetelElement.getElementsByTagName("menny").item(0)).map(Node::getTextContent).orElse(null))
-                            .netUnitPrice(Optional.ofNullable(tetelElement.getElementsByTagName("nettoegysegar").item(0)).map(Node::getTextContent).orElse(null))
-                            .netPrice(Optional.ofNullable(tetelElement.getElementsByTagName("nettoar").item(0)).map(Node::getTextContent).orElse(null))
-                            .vatPercentage(Optional.ofNullable(tetelElement.getElementsByTagName("afakulcs").item(0)).map(Node::getTextContent).orElse(null))
-                            .grossPrice(Optional.ofNullable(tetelElement.getElementsByTagName("bruttoar").item(0)).map(Node::getTextContent).orElse(null))
-                            .timeRange(Optional.ofNullable(tetelElement.getElementsByTagName("idoszak").item(0)).map(n -> TimeRange.builder()
-                                    .from(Optional.ofNullable(((Element) n).getElementsByTagName("tol").item(0)).map(Node::getTextContent).orElse(null))
+                            .id(tetelElement.getAttribute(ID))
+                            .productName(getTextContent(tetelElement, TERMEKNEV))
+                            .unit(getTextContent(tetelElement, MENNYEGYS))
+                            .amount(getTextContent(tetelElement, MENNY))
+                            .netUnitPrice(getTextContent(tetelElement, NETTOEGYSEGAR))
+                            .netPrice(getTextContent(tetelElement, NETTOAR))
+                            .vatPercentage(getTextContent(tetelElement, AFAKULCS))
+                            .grossPrice(getTextContent(tetelElement, BRUTTOAR))
+                            .timeRange(Optional.ofNullable(tetelElement.getElementsByTagName(IDOSZAK).item(0)).map(n -> TimeRange.builder()
+                                    .from(getTextContent((Element) n, TOL))
                                     .build()).orElse(null))
                             .build());
                 }
             }
         }
 
-        final NodeList sums = root.getElementsByTagName("osszesites").item(0).getChildNodes();
+        final NodeList sums = root.getElementsByTagName(OSSZESITES).item(0).getChildNodes();
         List<VatSection> vatSections = new ArrayList<>();
         final ElmuBillSummary.ElmuBillSummaryBuilder elmuBillSummaryBuilder = ElmuBillSummary.builder();
         for (int j = 0; j < sums.getLength(); j++) {
             Node nodeSum = sums.item(j);
             if (nodeSum.getNodeType() == Node.ELEMENT_NODE) {
-                if ("afarovat".equalsIgnoreCase(nodeSum.getNodeName())) {
+                if (AFAROVAT.equalsIgnoreCase(nodeSum.getNodeName())) {
                     Element afarovatElement = (Element) nodeSum;
                     vatSections.add(VatSection.builder()
-                            .id(afarovatElement.getAttribute("id"))
-                            .vatPercentage(Optional.ofNullable(afarovatElement.getElementsByTagName("afakulcs").item(0)).map(Node::getTextContent).orElse(null))
-                            .netPrice(Optional.ofNullable(afarovatElement.getElementsByTagName("nettoar").item(0)).map(Node::getTextContent).orElse(null))
-                            .vatValue(Optional.ofNullable(afarovatElement.getElementsByTagName("afaertek").item(0)).map(Node::getTextContent).orElse(null))
-                            .grossPrice(Optional.ofNullable(afarovatElement.getElementsByTagName("bruttoar").item(0)).map(Node::getTextContent).orElse(null))
-                            .timeRange(Optional.ofNullable(afarovatElement.getElementsByTagName("idoszak").item(0)).map(n -> TimeRange.builder()
-                                    .from(Optional.ofNullable(((Element) n).getElementsByTagName("tol").item(0)).map(Node::getTextContent).orElse(null))
+                            .id(afarovatElement.getAttribute(ID))
+                            .vatPercentage(getTextContent(afarovatElement, AFAKULCS))
+                            .netPrice(getTextContent(afarovatElement, NETTOAR))
+                            .vatValue(getTextContent(afarovatElement, AFAERTEK))
+                            .grossPrice(getTextContent(afarovatElement, BRUTTOAR))
+                            .timeRange(Optional.ofNullable(afarovatElement.getElementsByTagName(IDOSZAK).item(0)).map(n -> TimeRange.builder()
+                                    .from(getTextContent((Element) n, TOL))
                                     .build()).orElse(null))
                             .build());
                 }
 
-                if ("fizetendo".equalsIgnoreCase(nodeSum.getNodeName())) {
+                if (FIZETENDO.equalsIgnoreCase(nodeSum.getNodeName())) {
                     Element fizetendoElement = (Element) nodeSum;
-                    elmuBillSummaryBuilder.toPay(ToPay.builder()
-                            .payTotal(Optional.ofNullable(fizetendoElement.getElementsByTagName("fizetendoossz").item(0)).map(Node::getTextContent).orElse(null))
-                            .build());
+                    elmuBillSummaryBuilder.toPay(ToPay.builder().payTotal(getTextContent(fizetendoElement, FIZETENDOOSSZ)).build());
                 }
 
-                if ("vegosszeg".equalsIgnoreCase(nodeSum.getNodeName())) {
+                if (VEGOSSZEG.equalsIgnoreCase(nodeSum.getNodeName())) {
                     Element sumTotal = (Element) nodeSum;
                     elmuBillSummaryBuilder.sumTotal(SumTotal.builder()
-                            .netPriceTotal(Optional.ofNullable(sumTotal.getElementsByTagName("nettoarossz").item(0)).map(Node::getTextContent).orElse(null))
-                            .vatValueTotal(Optional.ofNullable(sumTotal.getElementsByTagName("afaertekossz").item(0)).map(Node::getTextContent).orElse(null))
-                            .grossPriceTotal(Optional.ofNullable(sumTotal.getElementsByTagName("bruttoarossz").item(0)).map(Node::getTextContent).orElse(null))
+                            .netPriceTotal(getTextContent(sumTotal, NETTOAROSSZ))
+                            .vatValueTotal(getTextContent(sumTotal, AFAERTEKOSSZ))
+                            .grossPriceTotal(getTextContent(sumTotal, BRUTTOAROSSZ))
                             .build());
                 }
             }
@@ -124,13 +165,17 @@ public class ElmuBillParser implements BillParser<ElmuBill> {
                 .build();
     }
 
+    private String getTextContent(Element element, String tagName) {
+        return Optional.ofNullable(element.getElementsByTagName(tagName).item(0)).map(Node::getTextContent).orElse(null);
+    }
+
     private Address buildAddress(Element cim) {
         return Address.builder()
-                .country(Optional.ofNullable(cim.getElementsByTagName("orszag").item(0)).map(Node::getTextContent).orElse(null))
-                .city(Optional.ofNullable(cim.getElementsByTagName("telepules").item(0)).map(Node::getTextContent).orElse(null))
-                .postCode(Optional.ofNullable(cim.getElementsByTagName("irszam").item(0)).map(Node::getTextContent).orElse(null))
-                .street(Optional.ofNullable(cim.getElementsByTagName("kozternev").item(0)).map(Node::getTextContent).orElse(null))
-                .houseNumber(Optional.ofNullable(cim.getElementsByTagName("hazszam").item(0)).map(Node::getTextContent).orElse(null))
+                .country(getTextContent(cim, ORSZAG))
+                .city(getTextContent(cim, TELEPULES))
+                .postCode(getTextContent(cim, IRSZAM))
+                .street(getTextContent(cim, KOZTERNEV))
+                .houseNumber(getTextContent(cim, HAZSZAM))
                 .build();
     }
 }
