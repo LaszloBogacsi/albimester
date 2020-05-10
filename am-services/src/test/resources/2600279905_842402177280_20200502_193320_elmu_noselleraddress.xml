@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="ISO-8859-2"?>
+<content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<szamla ugyfelaz="2600279905" szafaz="842402177280" feldolgazon="" szamkor="401059">
+		<fejlec>
+			<elado>
+				<nev>ELMŰ-ÉMÁSZ Energiaszolgáltató Zrt.</nev>
+				<adoszam>25366936-2-44</adoszam>
+			</elado>
+			<vevo>
+				<nev>Bogácsi László</nev>
+				<cim>
+					<orszag>Magyarország</orszag>
+					<telepules>Törökbálint</telepules>
+					<irszam>2045</irszam>
+					<kozternev>BEM JÓZSEF utca</kozternev>
+					<hazszam>14</hazszam>
+				</cim>
+			</vevo>
+			<szamlainfo>
+				<sorszam>842402177280</sorszam>
+				<kialldatum>2020.03.20</kialldatum>
+				<teljdatum>2020.04.06</teljdatum>
+				<fizhatarido>2020.04.06</fizhatarido>
+				<fizmod>Egyedi utalás (Saját E-számla)</fizmod>
+				<szamlatipus>Villamos energia elszámoló számla</szamlatipus>
+				<penznem>HUF</penznem>
+				<kibocsato_bankszamlaszama>10700024-69302288-51200002</kibocsato_bankszamlaszama>
+				<szamlazott_szolgaltatas>Villamos energia egyetemes szolgáltatás és villamosenergia-elosztás</szamlazott_szolgaltatas>
+			</szamlainfo>
+		</fejlec>
+		<tetelek>
+			<tetel id="1">
+				<termeknev>Fogyasztási hely azonosító: 20630373</termeknev>
+			</tetel>
+			<tetel id="2">
+				<termeknev>ESZ Lakossági &quot;A1&quot; kedv. árszabás díja</termeknev>
+				<mennyegys>kWh</mennyegys>
+				<menny>1067</menny>
+				<nettoegysegar>14,0600</nettoegysegar>
+				<nettoar>15002</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>19053</bruttoar>
+				<idoszak>
+					<tol>2019.03.12-2019.12.31</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="3">
+				<termeknev>ESZ Lakossági &quot;A1&quot; kedv. árszabás díja</termeknev>
+				<mennyegys>kWh</mennyegys>
+				<menny>228</menny>
+				<nettoegysegar>12,6200</nettoegysegar>
+				<nettoar>2877</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>3654</bruttoar>
+				<idoszak>
+					<tol>2020.01.01-2020.03.03</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="4">
+				<termeknev>ESZ Lakossági &quot;A1&quot; normál árszabás díja</termeknev>
+				<mennyegys>kWh</mennyegys>
+				<menny>460</menny>
+				<nettoegysegar>15,1000</nettoegysegar>
+				<nettoar>6946</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>8821</bruttoar>
+				<idoszak>
+					<tol>2019.03.12-2019.12.31</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="5">
+				<termeknev>ESZ Lakossági &quot;A1&quot; normál árszabás díja</termeknev>
+				<mennyegys>kWh</mennyegys>
+				<menny>99</menny>
+				<nettoegysegar>13,6600</nettoegysegar>
+				<nettoar>1352</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>1717</bruttoar>
+				<idoszak>
+					<tol>2020.01.01-2020.03.03</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="6" info="1">
+				<termeknev>Energiadíj összesen</termeknev>
+				<nettoar>26177</nettoar>
+				<bruttoar>33245</bruttoar>
+			</tetel>
+			<tetel id="7">
+				<termeknev>Részszámlákban elszámolt energiadíj</termeknev>
+				<nettoar>-23318</nettoar>
+				<bruttoar>-29613</bruttoar>
+			</tetel>
+			<tetel id="8" info="1">
+				<termeknev>Fizetendő energiadíj</termeknev>
+				<nettoar>2859</nettoar>
+				<bruttoar>3632</bruttoar>
+			</tetel>
+			<tetel id="9">
+				<termeknev>Energiaalapú rendszerhasználati díj &quot;A1&quot;</termeknev>
+				<mennyegys>kWh</mennyegys>
+				<menny>1527</menny>
+				<nettoegysegar>14,4650</nettoegysegar>
+				<nettoar>22088</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>28052</bruttoar>
+				<idoszak>
+					<tol>2019.03.12-2019.12.31</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="10">
+				<termeknev>Energiaalapú rendszerhasználati díj &quot;A1&quot;</termeknev>
+				<mennyegys>kWh</mennyegys>
+				<menny>327</menny>
+				<nettoegysegar>15,9000</nettoegysegar>
+				<nettoar>5199</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>6603</bruttoar>
+				<idoszak>
+					<tol>2020.01.01-2020.03.03</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="11">
+				<termeknev>Elosztói alapdíj &quot;A1&quot;*</termeknev>
+				<mennyegys>db</mennyegys>
+				<menny>1</menny>
+				<nettoegysegar>120,5000</nettoegysegar>
+				<nettoar>1085</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>1378</bruttoar>
+				<idoszak>
+					<tol>2019.03.12-2019.12.31</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="12">
+				<termeknev>Elosztói alapdíj &quot;A1&quot;*</termeknev>
+				<mennyegys>db</mennyegys>
+				<menny>1</menny>
+				<nettoegysegar>120,5000</nettoegysegar>
+				<nettoar>362</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>460</bruttoar>
+				<idoszak>
+					<tol>2020.01.01-2020.03.03</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="13" info="1">
+				<termeknev>Rendszerhasználati díjak összesen</termeknev>
+				<nettoar>28735</nettoar>
+				<bruttoar>36493</bruttoar>
+			</tetel>
+			<tetel id="14">
+				<termeknev>Részszámlákban elszámolt rendszerhasználati díjak</termeknev>
+				<nettoar>-25514</nettoar>
+				<bruttoar>-32406</bruttoar>
+			</tetel>
+			<tetel id="15" info="1">
+				<termeknev>Fizetendő rendszerhasználati díjak</termeknev>
+				<nettoar>3221</nettoar>
+				<bruttoar>4087</bruttoar>
+			</tetel>
+			<tetel id="16">
+				<termeknev>Fizetési felszólítás díja</termeknev>
+				<mennyegys>db</mennyegys>
+				<menny>1</menny>
+				<nettoegysegar>175,0000</nettoegysegar>
+				<nettoar>175</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>222</bruttoar>
+				<idoszak>
+					<tol>2019.07.19-2019.08.20</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="17">
+				<termeknev>Fizetési felszólítás díja</termeknev>
+				<mennyegys>db</mennyegys>
+				<menny>1</menny>
+				<nettoegysegar>175,0000</nettoegysegar>
+				<nettoar>175</nettoar>
+				<afakulcs>27</afakulcs>
+				<bruttoar>222</bruttoar>
+				<idoszak>
+					<tol>2019.10.18-2019.11.17</tol>
+				</idoszak>
+			</tetel>
+			<tetel id="18" info="1">
+				<termeknev>Felszólítási díjak összesen</termeknev>
+				<nettoar>350</nettoar>
+				<bruttoar>444</bruttoar>
+			</tetel>
+			<tetel id="19">
+				<termeknev>Részszámlákban elszámolt felszólítási díjak</termeknev>
+				<nettoar>-350</nettoar>
+				<bruttoar>-444</bruttoar>
+			</tetel>
+			<tetel id="20" info="1">
+				<termeknev>Fizetendő felszólítási díjak</termeknev>
+				<nettoar>0</nettoar>
+				<bruttoar>0</bruttoar>
+			</tetel>
+			<tetel id="21" info="1">
+				<termeknev>Nettó számlaérték összesen</termeknev>
+				<nettoar>6080</nettoar>
+			</tetel>
+			<tetel id="22" info="1">
+				<termeknev>Kerekítés</termeknev>
+				<nettoar>1</nettoar>
+				<bruttoar>3</bruttoar>
+			</tetel>
+			<tetel id="23" info="1">
+				<termeknev>Bruttó számlaérték összesen**</termeknev>
+				<bruttoar>7722</bruttoar>
+			</tetel>
+			<tetel id="24" info="1">
+				<termeknev>Fizetendő összeg összesen</termeknev>
+				<bruttoar>7722</bruttoar>
+			</tetel>
+		</tetelek>
+		<reszletezo></reszletezo>
+		<osszesites>
+			<afarovat id="1">
+				<afakulcs>27</afakulcs>
+				<nettoar>2859</nettoar>
+				<afaertek>772</afaertek>
+				<bruttoar>3631</bruttoar>
+				<idoszak>
+					<tol>2019.03.12-2020.03.03</tol>
+				</idoszak>
+			</afarovat>
+			<afarovat id="2">
+				<afakulcs>27</afakulcs>
+				<nettoar>3221</nettoar>
+				<afaertek>870</afaertek>
+				<bruttoar>4091</bruttoar>
+				<idoszak>
+					<tol>2019.03.12-2020.03.03</tol>
+				</idoszak>
+			</afarovat>
+			<fizetendo>
+				<fizetendoossz>7722</fizetendoossz>
+			</fizetendo>
+			<vegosszeg>
+				<nettoarossz>6080</nettoarossz>
+				<afaertekossz>1642</afaertekossz>
+				<bruttoarossz>7722</bruttoarossz>
+			</vegosszeg>
+		</osszesites>
+	</szamla>
+</content>

@@ -3,11 +3,9 @@ package com.laszlobogacsi.albimester.parser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -42,6 +40,4 @@ public class XMLDocumentParserTest {
         final InputStream inputStream = new ByteArrayInputStream(xmlString.getBytes());
         assertThatThrownBy(() -> parser.parse(inputStream)).isInstanceOf(XMLDocumentParseException.class);
     }
-
-
 }

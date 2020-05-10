@@ -41,7 +41,6 @@ public class XMLParserServiceTest {
     private static class DummyBillParser implements BillParser<DummyBill> {
         @Override
         public DummyBill parseBill(Element root) {
-            root.getElementsByTagName("name").item(0).getTextContent();
             return new DummyBill().setName(root.getElementsByTagName("name").item(0).getTextContent().trim());
         }
     }
