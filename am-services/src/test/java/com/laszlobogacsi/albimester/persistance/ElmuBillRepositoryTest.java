@@ -1,6 +1,7 @@
 package com.laszlobogacsi.albimester.persistance;
 
 import com.laszlobogacsi.albimester.bills.elmu.*;
+import com.laszlobogacsi.albimester.parser.Bill;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,19 +21,19 @@ public class ElmuBillRepositoryTest {
 
     @Autowired
     BillRepository repository;
-    ElmuBillData elmuBillData;
+    BillData elmuBillData;
 
     @BeforeEach
     void setUp() {
         ElmuBill bill = getElmuBill();
-        elmuBillData = BillData.from(bill, BillType.ELMU);
+        elmuBillData = new BillData(BillType.ELMU, bill.toString());
 
     }
 
     @Test
     void canSaveAnElmuBill() {
         elmuBillData = repository.save(elmuBillData);
-        assertThat(repository.findById(bill.getId())).hasValue(elmuBillData);
+        assertThat(repository.findById(elmuBillData.getId())).hasValue(elmuBillData);
     }
 
     private ElmuBill getElmuBill() {
