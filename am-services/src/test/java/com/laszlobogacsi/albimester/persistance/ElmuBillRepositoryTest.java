@@ -26,7 +26,7 @@ public class ElmuBillRepositoryTest {
     @BeforeEach
     void setUp() {
         ElmuBill bill = getElmuBill();
-        elmuBillData = new BillData(BillType.ELMU, bill.toString());
+        elmuBillData = new BillData(BillType.ELMU, BillTransformer.transformToJson(bill));
 
     }
 
