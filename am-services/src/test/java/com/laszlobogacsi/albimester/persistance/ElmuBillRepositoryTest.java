@@ -31,7 +31,7 @@ public class ElmuBillRepositoryTest {
     }
 
     @Test
-    void canSaveAnElmuBill() {
+    void canFindASavedAnElmuBillById() {
         elmuBillData = repository.save(elmuBillData);
         assertThat(repository.findById(elmuBillData.getId())).hasValue(elmuBillData);
     }
