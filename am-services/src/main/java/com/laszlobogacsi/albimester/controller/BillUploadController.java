@@ -13,8 +13,8 @@ import java.util.List;
 public class BillUploadController {
 
     @RequestMapping(value = "/upload-bill", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-    public ResponseEntity<Object> uploadBill(@RequestParam(value = "data", required = true) List<MultipartFile> files) {
-
+    public ResponseEntity<Object> uploadBill(@RequestParam(value = "data") List<MultipartFile> files) {
+        files.forEach(file -> System.out.println(file.getOriginalFilename()));
         return ResponseEntity.accepted().build();
     }
 }
