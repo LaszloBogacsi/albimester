@@ -1,11 +1,11 @@
-package com.laszlobogacsi.albimester.upload;
+package com.laszlobogacsi.albimester.bills;
 
+import com.laszlobogacsi.albimester.bills.BillService;
 import com.laszlobogacsi.albimester.persistance.BillData;
 import com.laszlobogacsi.albimester.persistance.BillRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

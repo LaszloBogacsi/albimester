@@ -1,4 +1,4 @@
-package com.laszlobogacsi.albimester.upload;
+package com.laszlobogacsi.albimester.bills;
 
 import com.laszlobogacsi.albimester.persistance.BillData;
 import com.laszlobogacsi.albimester.persistance.BillRepository;
