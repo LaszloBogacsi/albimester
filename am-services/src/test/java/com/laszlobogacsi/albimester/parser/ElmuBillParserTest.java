@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ElmuBillParserTest {
     @Test
     void canParseElmuBill() throws IOException {
-        BillParser<ElmuBill> billParser = new ElmuBillParser();
+        BillParser billParser = new ElmuBillParser();
         Path path = Paths.get("src/test/resources/2600279905_842402177280_20200502_193320_elmu.xml");
         final InputStream inputStream = Files.newInputStream(path);
         final Element root = new XMLDocumentParser().parse(inputStream);
@@ -35,7 +35,7 @@ public class ElmuBillParserTest {
 
     @Test
     void canParseElmuBillWithMissingBuyerAddress() throws IOException {
-        BillParser<ElmuBill> billParser = new ElmuBillParser();
+        BillParser billParser = new ElmuBillParser();
         Path path = Paths.get("src/test/resources/2600279905_842402177280_20200502_193320_elmu_nobuyeraddress.xml");
         final InputStream inputStream = Files.newInputStream(path);
         final Element root = new XMLDocumentParser().parse(inputStream);
@@ -52,7 +52,7 @@ public class ElmuBillParserTest {
 
     @Test
     void canParseElmuBillWithMissingSellerAddress() throws IOException {
-        BillParser<ElmuBill> billParser = new ElmuBillParser();
+        BillParser billParser = new ElmuBillParser();
         Path path = Paths.get("src/test/resources/2600279905_842402177280_20200502_193320_elmu_noselleraddress.xml");
         final InputStream inputStream = Files.newInputStream(path);
         final Element root = new XMLDocumentParser().parse(inputStream);

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ElmuBillParser implements BillParser<ElmuBill> {
+public class ElmuBillParser implements BillParser {
 
     public static final String FEJLEC = "fejlec";
     public static final String ELADO = "elado";

@@ -18,7 +18,7 @@ public class BillUploadControllerTest {
 
     @Test
     void canUploadAMultipartFile() throws Exception {
-        MockMultipartFile billXmlFile = new MockMultipartFile("data", "some-filename.xml", "text/xml", "<?xml version=\"1.0\"?><aNode>test text</aNode>".getBytes());
+        MockMultipartFile billXmlFile = new MockMultipartFile("data", "some-filename.xml", "text/xml", "<?xml version=\"1.0\"?><aNode><fejlec>test text</fejlec><tetelek>test text</tetelek><osszesites>test text</osszesites></aNode>".getBytes());
         mockMvc.perform(MockMvcRequestBuilders.multipart("/upload-bill").file(billXmlFile))
                 .andExpect(MockMvcResultMatchers.status().isAccepted());
     }

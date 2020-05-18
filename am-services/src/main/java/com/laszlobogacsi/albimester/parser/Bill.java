@@ -1,4 +1,6 @@
 package com.laszlobogacsi.albimester.parser;
 
-public interface Bill {
+import com.laszlobogacsi.albimester.persistance.BillType;
+
+public abstract class Bill {
 }

@@ -1,7 +1,10 @@
 package com.laszlobogacsi.albimester.parser;
 
+import org.springframework.stereotype.Service;
+
 import java.io.InputStream;
 
+@Service
 public class XMLParserService {
     private final DocumentParser parser;
 
@@ -9,7 +12,7 @@ public class XMLParserService {
         this.parser = parser;
     }
 
-    public <T extends Bill> T parseInput(InputStream inputStream, BillParser<T> billParser) {
+    public Bill parseInput(InputStream inputStream, BillParser billParser) {
         return billParser.parseBill(parser.parse(inputStream));
     }
 }

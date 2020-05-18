@@ -5,8 +5,8 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 
 @Builder
-@EqualsAndHashCode
-public class ElmuBill implements Bill {
+@EqualsAndHashCode(callSuper=false)
+public class ElmuBill extends Bill {
     private ElmuBillHeader header;
     private ElmuBillItems items;
 //    private ElmuBillDetails details;
