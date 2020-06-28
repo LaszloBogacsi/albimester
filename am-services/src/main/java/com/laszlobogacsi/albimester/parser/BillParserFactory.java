@@ -1,6 +1,6 @@
 package com.laszlobogacsi.albimester.parser;
 
-import com.laszlobogacsi.albimester.persistance.BillType;
+import com.laszlobogacsi.albimester.persistance.bill.BillType;
 
 public class BillParserFactory {
     public static BillParser getParser(BillType billType) {

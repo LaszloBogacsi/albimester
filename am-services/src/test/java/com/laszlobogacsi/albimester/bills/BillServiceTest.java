@@ -1,15 +1,14 @@
 package com.laszlobogacsi.albimester.bills;
 
-import com.laszlobogacsi.albimester.bills.BillService;
-import com.laszlobogacsi.albimester.persistance.BillData;
-import com.laszlobogacsi.albimester.persistance.BillRepository;
+import com.laszlobogacsi.albimester.persistance.bill.BillData;
+import com.laszlobogacsi.albimester.persistance.bill.BillRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
 
-import static java.util.Collections.*;
+import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 

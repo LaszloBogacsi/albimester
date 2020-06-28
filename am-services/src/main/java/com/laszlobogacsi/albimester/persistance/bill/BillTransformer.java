@@ -1,4 +1,4 @@
-package com.laszlobogacsi.albimester.persistance;
+package com.laszlobogacsi.albimester.persistance.bill;
 
 import com.google.gson.Gson;
 import com.laszlobogacsi.albimester.parser.Bill;

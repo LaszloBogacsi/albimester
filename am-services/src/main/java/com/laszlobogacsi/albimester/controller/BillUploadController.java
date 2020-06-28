@@ -2,9 +2,9 @@ package com.laszlobogacsi.albimester.controller;
 
 import com.laszlobogacsi.albimester.parser.BillParserFactory;
 import com.laszlobogacsi.albimester.parser.XMLParserService;
-import com.laszlobogacsi.albimester.persistance.BillData;
-import com.laszlobogacsi.albimester.persistance.BillTransformer;
-import com.laszlobogacsi.albimester.persistance.BillType;
+import com.laszlobogacsi.albimester.persistance.bill.BillData;
+import com.laszlobogacsi.albimester.persistance.bill.BillTransformer;
+import com.laszlobogacsi.albimester.persistance.bill.BillType;
 import com.laszlobogacsi.albimester.bills.BillService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

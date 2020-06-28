@@ -1,7 +1,10 @@
 package com.laszlobogacsi.albimester.persistance;
 
 import com.laszlobogacsi.albimester.bills.elmu.*;
-import com.laszlobogacsi.albimester.parser.Bill;
+import com.laszlobogacsi.albimester.persistance.bill.BillData;
+import com.laszlobogacsi.albimester.persistance.bill.BillRepository;
+import com.laszlobogacsi.albimester.persistance.bill.BillTransformer;
+import com.laszlobogacsi.albimester.persistance.bill.BillType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

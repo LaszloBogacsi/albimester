@@ -1,9 +1,11 @@
-package com.laszlobogacsi.albimester.persistance;
+package com.laszlobogacsi.albimester.persistance.bill;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.type.ClobType;
 
 import javax.persistence.*;
+import java.sql.Clob;
 
 @Entity
 @Getter
@@ -15,6 +17,7 @@ public class BillData {
     private Long Id;
 
     @Lob
+    @Column(columnDefinition = "CLOB")
     private String billContent;
 
     private BillType billType;

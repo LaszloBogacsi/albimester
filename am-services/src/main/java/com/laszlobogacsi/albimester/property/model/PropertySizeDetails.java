@@ -1,16 +1,21 @@
 package com.laszlobogacsi.albimester.property.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Optional;
+import javax.persistence.Embeddable;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Embeddable
 public class PropertySizeDetails {
-    private final int sizeM2;
-    private final Optional<Integer> balconyM2;
-    private final int fullSizeRoomNumber;
-    private final Optional<Integer> halfSizeRoomNumber;
+    private int sizeM2;
+    private int balconyM2;
+    private int fullSizeRoomNumber;
+    private int halfSizeRoomNumber;
 
 }

@@ -1,7 +1,7 @@
 package com.laszlobogacsi.albimester.bills;
 
-import com.laszlobogacsi.albimester.persistance.BillData;
-import com.laszlobogacsi.albimester.persistance.BillRepository;
+import com.laszlobogacsi.albimester.persistance.bill.BillData;
+import com.laszlobogacsi.albimester.persistance.bill.BillRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

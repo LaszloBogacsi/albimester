@@ -1,4 +1,4 @@
-package com.laszlobogacsi.albimester.persistance;
+package com.laszlobogacsi.albimester.persistance.bill;
 
 import org.springframework.data.repository.CrudRepository;
 
